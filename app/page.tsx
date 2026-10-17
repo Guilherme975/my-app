@@ -1,69 +1,101 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+
+// Importando todos os componentes
+import { BotaoOnOffSelf, BotaoOnOffProps } from './components/Exercicios';
+import { ValidacaoNome } from './components/Exercicio3';
+import { ValidacaoSenha } from './components/Exercicio4';
+import { ValidacaoSenhaUseEffect } from './components/Exercicio5';
+import { ValidacaoSenhaRender } from './components/Exercicio6';
+import { InverterTexto } from './components/Exercicio7';
+import { SelecaoGenero } from './components/Exercicio8';
+import { SelecaoFrutas } from './components/Exercicio9';
+import { AbaNavegacao } from './components/Exercicio10';
 
 export default function Home() {
+  const [estadoEx2, setEstadoEx2] = useState(false);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+      <h1>Lista de Exercícios TypeScript / Next.js</h1>
+
+      {/* --- EXERCÍCIO 1 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 1: Estado Interno</h2>
+        <p>O próprio componente gerencia seu estado de ON/OFF.</p>
+        <BotaoOnOffSelf />
+      </section>
+
+      {/* --- EXERCÍCIO 2 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 2: Estado na Página (Props e Evento)</h2>
+        <p>O estado está na página principal e é passado via props.</p>
+        <BotaoOnOffProps
+          ligado={estadoEx2}
+          onToggle={() => setEstadoEx2(!estadoEx2)}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <p style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+          Status capturado na página principal: <strong>{estadoEx2 ? 'Ativo' : 'Inativo'}</strong>
+        </p>
+      </section>
+
+      {/* --- EXERCÍCIO 3 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 3: Validação do Campo de Nome</h2>
+        <p>Validação com mensagens de erro (vermelho) ou sucesso (verde).</p>
+        <ValidacaoNome />
+      </section>
+
+      {/* --- EXERCÍCIO 4 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 4: Validação de Confirmação de Senha (com Botão)</h2>
+        <p>Verifica se a senha e a confirmação coincidem ao clicar em enviar.</p>
+        <ValidacaoSenha />
+      </section>
+
+      {/* --- EXERCÍCIO 5 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 5: Validação com useEffect</h2>
+        <p>Validação automática em tempo real conforme os campos mudam.</p>
+        <ValidacaoSenhaUseEffect />
+      </section>
+
+      {/* --- EXERCÍCIO 6 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 6: Validação Direta no Re-render</h2>
+        <p>Validação calculada diretamente no corpo do componente a cada digitação.</p>
+        <ValidacaoSenhaRender />
+      </section>
+
+      {/* --- EXERCÍCIO 7 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 7: Inverter Texto</h2>
+        <p>Campo de texto com botão para inverter os caracteres.</p>
+        <InverterTexto />
+      </section>
+
+      {/* --- EXERCÍCIO 8 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 8: Seleção de Gênero (Radio Buttons)</h2>
+        <p>Interface com botões de rádio para escolher o gênero em português.</p>
+        <SelecaoGenero />
+      </section>
+
+      {/* --- EXERCÍCIO 9 --- */}
+      <section style={{ marginBottom: '30px', border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 9: Seleção de Frutas (Select / Optgroup)</h2>
+        <p>Campo de seleção agrupado com as frutas indicadas na imagem.</p>
+        <SelecaoFrutas />
+      </section>
+
+      {/* --- EXERCÍCIO 10 --- */}
+      <section style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px' }}>
+        <h2>Exercício 10: Interface de Abas (Tabs)</h2>
+        <p>Navegação por abas com alteração dinâmica de conteúdo.</p>
+        <AbaNavegacao />
+      </section>
+
+    </main>
   );
 }
